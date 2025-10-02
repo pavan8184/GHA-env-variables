@@ -5,7 +5,7 @@ on:
       - main
       - dev
 env:
-  MONGODB_DB_NAME: gha-demo      
+  MONGODB_DB_NAME: VAMdatabase
 jobs:
   test:
     env:
@@ -29,13 +29,13 @@ jobs:
       - name: Run tests
         run: npm test
       - name: Output information
-        run: 
+        run: |
           echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
   deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Output information
-        run: |        
+        run: |
           echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
-          echo "MONGODB_DB_NAME: $MONGODB_DB_NAME"
+          echo "MONGODB_DB_NAME: ${{ env.MONGODB_DB_NAME }}"
